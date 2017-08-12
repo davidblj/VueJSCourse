@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="root">
+        <!-- vue directive for form inputs and controls -->
+        <input id="input" v-model="message">
+
+        <!-- Note the dinamic update-->
+        <p>The value of the input is: {{ message }}</p>
+    </div>
+
+    <!-- with vue we don't have to set an event listener to modify elements.
+    say, for example, in the paragraph, we can bind this element with a value. Make any
+    change to the input and see how the paragraph react -->
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let data = {
+            message: 'hello world'
+        };
+
+        new Vue({
+            el: '#root',       // context for automatic binding
+            data: data         // set the model to be the variable "data"
+        })
+    </script>
+</body>
+</html>
