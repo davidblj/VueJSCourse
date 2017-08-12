@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,36 +9,35 @@
 
     <div id="root">
         <ul>
-            <!-- look at the directives "v-for" for loops and "v-text" for setting text-->
             <li v-for="name in names" v-text="name"></li>
         </ul>
 
-        <input id="input">
-        <button id="button">Add Name</button>
+        <input id="input" v-model="newName">
+        <!-- we can attach an event listener to this element with the directive "v-on".
+         A shortcut can be applied in this type of instructions: @click="addName"-->
+        <button v-on:click="addName">Add Name</button>
     </div>
 
     <script src="node_modules/vue/dist/vue.js"></script>
     <script>
-        // take a look at the reactivity at the command prompt by typing:
-        // app.names.push('susan')
 
         var app = new Vue({
             el: '#root',
             data: {
-                foo: 'bar',
+                newName:'',
                 names: ['joe', 'mary', 'sophy']
             },
 
-            // triggered once the instance is mounted.
-            mounted() {
-                // alert('ready');
-            }
-        });
+            methods: {
 
-        // with app, and some Js, we can leverage the code to push names into the array "names"
-        document.querySelector('#button').addEventListener('click', () => {
-            let name = document.querySelector('#input');
-            app.names.push(name.value);
+                addName(){
+                    // we can access variables that we defined in our data model
+                    this.names.push(this.newName);
+
+                    // update the string to an empty string. Note that this variable is "reactive"
+                    this.newName = '';
+                }
+            }
         });
 
     </script>
