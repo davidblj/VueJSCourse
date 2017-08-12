@@ -7,27 +7,39 @@
 <body>
 
     <div id="root">
-        <!-- vue directive for form inputs and controls -->
-        <input id="input" v-model="message">
+        <ul>
+            <!-- look at the directives "v-for" for loops and "v-text" for setting text-->
+            <li v-for="name in names" v-text="name"></li>
+        </ul>
 
-        <!-- Note the dinamic update-->
-        <p>The value of the input is: {{ message }}</p>
+        <input id="input">
+        <button id="button">Add Name</button>
     </div>
-
-    <!-- with vue we don't have to set an event listener to modify elements.
-    say, for example, in the paragraph, we can bind this element with a value. Make any
-    change to the input and see how the paragraph react -->
 
     <script src="node_modules/vue/dist/vue.js"></script>
     <script>
-        let data = {
-            message: 'hello world'
-        };
+        // take a look at the reactivity at the command prompt by typing:
+        // app.names.push('susan')
 
-        new Vue({
-            el: '#root',       // context for automatic binding
-            data: data         // set the model to be the variable "data"
-        })
+        var app = new Vue({
+            el: '#root',
+            data: {
+                foo: 'bar',
+                names: ['joe', 'mary', 'sophy']
+            },
+
+            // triggered once the instance is mounted.
+            mounted() {
+                // alert('ready');
+            }
+        });
+
+        // with app, and some Js, we can leverage the code to push names into the array "names"
+        document.querySelector('#button').addEventListener('click', () => {
+            let name = document.querySelector('#input');
+            app.names.push(name.value);
+        });
+
     </script>
 </body>
 </html>
