@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:v-on="http://www.w3.org/1999/xhtml">
+      xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style type="text/css">
+        .color-red { color: darkred}
+        .is-loading {background: red}
+    </style>
 </head>
 <body>
 
-    <div id="root">
-        <ul>
-            <li v-for="name in names" v-text="name"></li>
-        </ul>
+    <div  id="root">
+        <!-- You can bind this element attributes to variables in your vue.js file.
+        Note that we cant use something like {{title}}, because the expression will be taken as a
+        String.
+        A shortcut can be applied in this directive by just typing the semicolon  :title=".." -->
+        <button v-bind:title="title">Hover over me</button>
 
-        <input id="input" v-model="newName">
-        <!-- we can attach an event listener to this element with the directive "v-on".
-         A shortcut can be applied in this type of instructions: @click="addName"-->
-        <button v-on:click="addName">Add Name</button>
+        <h1 :class="className"> Hellooo Worrrld !</h1>
+
+        <!-- for dynamic user interaction, we can bind attributes through expressions
+        with the following sintax: 'className' : Boolean
+        When the user clicks, we are setting the variable "isLoading" to true, which in turn,
+        set the classname to "is-loading" -->
+        <button :class="{ 'is-loading' : isLoading}" @click="toggleClass">Click Me</button>
     </div>
 
     <script src="node_modules/vue/dist/vue.js"></script>
     <script>
-
         var app = new Vue({
             el: '#root',
             data: {
-                newName:'',
-                names: ['joe', 'mary', 'sophy']
+                title: 'Now the title is being set through JavaScript',
+                className: 'color-red',
+                isLoading: false
             },
 
             methods: {
-
-                addName(){
-                    // we can access variables that we defined in our data model
-                    this.names.push(this.newName);
-
-                    // update the string to an empty string. Note that this variable is "reactive"
-                    this.newName = '';
+                toggleClass() {
+                    this.isLoading = true;
                 }
             }
         });
-
     </script>
 </body>
 </html>
