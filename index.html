@@ -5,77 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <style type="text/css">
-        .color-red { color: darkred}
-        .is-loading {background: red}
-    </style>
 </head>
 <body>
 
 <div id="root">
 
-    <!-- we will now add a computed value. A computed value is any expression
-     that is put in its own method for the sake of readability. You can still use
-     v-text: or the curly braces {{}} for the same purpose. -->
-    <h1>
-        {{reversedMessage}}
-    </h1>
+    <!-- We are going to create our tag through components in vuejs-->
+  <task>Go to the store</task>
+    <task>Go to the work</task>
+    <task>Go to the gym</task>
 
-    <!-- now take a look at a more complete computed task-->
-    <h1>All Tasks </h1>
-    <ul>
-        <li v-for="task in tasks">
-            <input type="checkbox" v-model="task.completed">
-            {{task.description}}
-        </li>
-
-    </ul>
-
-    <h1>Incompleted</h1>
-    <ul>
-        <li v-for="task in incompleteTasks" v-text="task.description"></li>
-        <!-- we could have implemented the following line:
-        <li v-for="task in tasks" v-text="task.description" v-if="task.completed"></li>
-         but we moved some of the logic implied here to our js file. -->
-    </ul>
-
-    <!-- note the reactivity in the "v-for" directive. -->
 </div>
 
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#root',
-            data: {
-                message: "hello world",
-                tasks: [
-                    { description: 'Go the store', completed: true},
-                    { description: 'Finish screencast', completed: false},
-                    { description: 'make donation', completed: false},
-                    { description: 'Clear inbox', completed: false},
-                    { description: 'make dinner', completed: false},
-                    { description: 'clean room', completed: true},
-                ],
-            },
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="vue.js"></script>
 
-            methods: {
-            },
-
-            computed: {
-                reversedMessage() {
-
-                    // Reversing the "message" string
-                    return this.message.split('').reverse().join();
-                },
-
-                incompleteTasks() {
-
-                    // returning all tasks where "completed" equals true
-                    return this.tasks.filter(task => !task.completed);
-                }
-            }
-        });
-    </script>
 </body>
 </html>
