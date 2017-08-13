@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+      xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,35 +13,66 @@
 </head>
 <body>
 
-    <div  id="root">
-        <!-- You can bind this element attributes to variables in your vue.js file.
-        Note that we cant use something like {{title}}, because the expression will be taken as a
-        String.
-        A shortcut can be applied in this directive by just typing the semicolon  :title=".." -->
-        <button v-bind:title="title">Hover over me</button>
+<div id="root">
 
-        <h1 :class="className"> Hellooo Worrrld !</h1>
+    <!-- we will now add a computed value. A computed value is any expression
+     that is put in its own method for the sake of readability. You can still use
+     v-text: or the curly braces {{}} for the same purpose. -->
+    <h1>
+        {{reversedMessage}}
+    </h1>
 
-        <!-- for dynamic user interaction, we can bind attributes through expressions
-        with the following sintax: 'className' : Boolean
-        When the user clicks, we are setting the variable "isLoading" to true, which in turn,
-        set the classname to "is-loading" -->
-        <button :class="{ 'is-loading' : isLoading}" @click="toggleClass">Click Me</button>
-    </div>
+    <!-- now take a look at a more complete computed task-->
+    <h1>All Tasks </h1>
+    <ul>
+        <li v-for="task in tasks">
+            <input type="checkbox" v-model="task.completed">
+            {{task.description}}
+        </li>
+
+    </ul>
+
+    <h1>Incompleted</h1>
+    <ul>
+        <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        <!-- we could have implemented the following line:
+        <li v-for="task in tasks" v-text="task.description" v-if="task.completed"></li>
+         but we moved some of the logic implied here to our js file. -->
+    </ul>
+
+    <!-- note the reactivity in the "v-for" directive. -->
+</div>
 
     <script src="node_modules/vue/dist/vue.js"></script>
     <script>
         var app = new Vue({
             el: '#root',
             data: {
-                title: 'Now the title is being set through JavaScript',
-                className: 'color-red',
-                isLoading: false
+                message: "hello world",
+                tasks: [
+                    { description: 'Go the store', completed: true},
+                    { description: 'Finish screencast', completed: false},
+                    { description: 'make donation', completed: false},
+                    { description: 'Clear inbox', completed: false},
+                    { description: 'make dinner', completed: false},
+                    { description: 'clean room', completed: true},
+                ],
             },
 
             methods: {
-                toggleClass() {
-                    this.isLoading = true;
+            },
+
+            computed: {
+                reversedMessage() {
+
+                    // Reversing the "message" string
+                    return this.message.split('').reverse().join();
+                },
+
+                incompleteTasks() {
+
+                    // returning all tasks where "completed" equals true
+                    return this.tasks.filter(task => !task.completed);
                 }
             }
         });
