@@ -1,36 +1,30 @@
-Vue.component('mensaje', {
+Vue.component('modal', {
 
-    // parameter values that this component will receive
-    props: ['title', 'body'],
+    template: `
+    <div class="modal  is-active">
+            <div class="modal-background"></div>
+            <div class="modal-content">
 
-    data() {
-        return {
-            isVisible: true
-        };
-    },
-
-    // v-show will hide its element if is set to true. We manipulate this variable with
-    // the method "hideModal"
-    template: ` 
-     <article class="message" v-show="isVisible">
-            <div class="message-header">
-                {{title}}
-                <button type="button" @click="hideModal">x</button>
+                <div class="box">
+                    <slot></slot>
+                </div>
             </div>
-            <div class="message-body">
-                {{body}}
-            </div>
-        </article>`,
+            <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+        </div>
+    `
 
-    methods: {
-
-        hideModal() {
-            this.isVisible = false;
-        }
-    }
 });
+
+// we need to notify our root instance that a change was made to some variable by one of
+// our components. For that we define a custom event with the syntax $emit('nameOfTheCustomEvent').
+
+// note that "is-active" class is always on. We control its visibility with Vuejs
 
 new Vue({
 
-   el: '#root'
+    el: '#root',
+
+    data: {
+        showModal: false
+    }
 });

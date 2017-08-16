@@ -12,13 +12,11 @@
 <div class="container">
     <div id="root">
 
-        <!-- for this example, we will pass variables defined in our html, to our components
-        in our vue.js file. And we are also adding some kind of behaviour defined, not in the
-         html, but in the component definition -->
-
-        <mensaje title="hello world" body="Lorem ipsum"></mensaje>
-
-        <mensaje title="hello city" body="Lorem ipsum"></mensaje>
+        <!-- Custom event -->
+        <modal v-if="showModal" @close="showModal = false">
+            Insert any text
+        </modal>
+        <button @click="showModal = true">show modal</button>
 
     </div>
 </div>
