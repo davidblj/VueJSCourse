@@ -12,11 +12,22 @@
 <div class="container">
     <div id="root">
 
-        <!-- Custom event -->
-        <modal v-if="showModal" @close="showModal = false">
-            Insert any text
-        </modal>
-        <button @click="showModal = true">show modal</button>
+        <tabs>
+            <tab name="About us" :selected="true">
+                <h1>About us tab</h1>
+            </tab>
+
+            <tab name="About Our Culture">
+                <h1>About our Culture tab</h1>
+            </tab>
+
+            <tab name="About Our Vision">
+                <h1>About Our Vision tab</h1>
+            </tab>
+
+            <!-- and add them as much as you like, a new entry will spawn a new tab
+             in the tabs header -->
+        </tabs>
 
     </div>
 </div>
