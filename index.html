@@ -5,14 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
 </head>
 <body>
 
-<div id="root">
+<div class="container">
+    <div id="root">
 
-    <!-- we are going to nest components in this lesson -->
-    <task-list></task-list>
+        <!-- for this example, we will pass variables defined in our html, to our components
+        in our vue.js file. And we are also adding some kind of behaviour defined, not in the
+         html, but in the component definition -->
+
+        <mensaje title="hello world" body="Lorem ipsum"></mensaje>
+
+        <mensaje title="hello city" body="Lorem ipsum"></mensaje>
+
+    </div>
 </div>
+
 
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="vue.js"></script>

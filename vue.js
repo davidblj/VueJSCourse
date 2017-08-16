@@ -1,26 +1,32 @@
-Vue.component('task', {
+Vue.component('mensaje', {
 
-    template: '<li><slot></slot></li>'
-});
+    // parameter values that this component will receive
+    props: ['title', 'body'],
 
-Vue.component('task-list', {
-
-    // templates must have a root element. Thats why we enclose a "task" within "div"
-    template: `<div><task v-for="task in tasks">{{task.description}}</task></div>`,
-
-    // we can't bind data directly to the data variable. We do so through a method
     data() {
         return {
-
-            tasks: [
-                {description: 'Go the store', completed: true},
-                {description: 'Finish screencast', completed: false},
-                {description: 'make donation', completed: false},
-                {description: 'Clear inbox', completed: false},
-                {description: 'make dinner', completed: false},
-                {description: 'clean room', completed: true},
-            ]
+            isVisible: true
         };
+    },
+
+    // v-show will hide its element if is set to true. We manipulate this variable with
+    // the method "hideModal"
+    template: ` 
+     <article class="message" v-show="isVisible">
+            <div class="message-header">
+                {{title}}
+                <button type="button" @click="hideModal">x</button>
+            </div>
+            <div class="message-body">
+                {{body}}
+            </div>
+        </article>`,
+
+    methods: {
+
+        hideModal() {
+            this.isVisible = false;
+        }
     }
 });
 
