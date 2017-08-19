@@ -16,9 +16,10 @@
 <div class="container">
     <div id="root">
 
-        <!-- Coupon will react when clicked outside the box-->
-        <!-- use the equivalent @applied -->
-        <coupon v-on:applied="onCouponApplied"></coupon>
+        <!-- This time we will try to make siblings react between them on
+        custom events -->
+
+        <coupon :applied="onCouponApplied"></coupon>
 
         <h1 v-if="couponApplied">You applied a coupon</h1>
 
