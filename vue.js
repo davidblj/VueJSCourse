@@ -1,6 +1,17 @@
-// in order to listen for events in components that are not related to each other, we crate a
-// new Vue instance.
-window.Event = new Vue();
+// We create a class to avoid calling "$on" and "$emit" every time we want to listen for events
+window.Event = new class {
+    constructor() {
+        this.vue = new Vue();
+    }
+
+    fire(event, data = null){
+        this.vue.$emit(event, data)
+    }
+
+    listen(event, callback){
+        this.vue.$on(event, callback);
+    }
+};
 
 Vue.component('coupon', {
     template: '<input placeholder="Enter your coupon code" @blur="onCouponApplied">',
@@ -10,7 +21,7 @@ Vue.component('coupon', {
 
             // trigger onCouponApplied. This time, any component can listen for changes
             // on Event
-            Event.$emit('applied');
+            Event.fire('applied');
         }
     }
 });
@@ -24,7 +35,7 @@ new Vue({
     },
     created() {
 
-        Event.$on('applied', () => alert('handling event'));
+        Event.listen('applied', () => alert('handling event'));
     }
 });
 
