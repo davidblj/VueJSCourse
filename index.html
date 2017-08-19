@@ -15,14 +15,20 @@
 
 <div class="container">
     <div id="root">
+        <modal>
 
-        <!-- This time we will try to make siblings react between them on
-        custom events -->
+            <!-- in this example we will slot content, but it will be
+             distributed in a desired way -->
 
-        <coupon :applied="onCouponApplied"></coupon>
+            <div slot="header">My title</div>
+            <!-- if you dont want any tag appearing on the html, use template-->
+            <!-- <template slot=header>My Title</template> -->
 
-        <h1 v-if="couponApplied">You applied a coupon</h1>
-
+            <template slot="footer">
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </template>
+        </modal>
     </div>
 </div>
 
