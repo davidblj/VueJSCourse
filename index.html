@@ -6,28 +6,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+
+    <style>
+        body { padding-top: 40px; }
+    </style>
 </head>
 <body>
 
 <div class="container">
     <div id="root">
 
-        <tabs>
-            <tab name="About us" :selected="true">
-                <h1>About us tab</h1>
-            </tab>
+        <!-- Coupon will react when clicked outside the box-->
+        <!-- use the equivalent @applied -->
+        <coupon v-on:applied="onCouponApplied"></coupon>
 
-            <tab name="About Our Culture">
-                <h1>About our Culture tab</h1>
-            </tab>
-
-            <tab name="About Our Vision">
-                <h1>About Our Vision tab</h1>
-            </tab>
-
-            <!-- and add them as much as you like, a new entry will spawn a new tab
-             in the tabs header -->
-        </tabs>
+        <h1 v-if="couponApplied">You applied a coupon</h1>
 
     </div>
 </div>
