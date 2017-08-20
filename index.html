@@ -16,18 +16,18 @@
 <div class="container">
     <div id="root">
         <modal>
+            <!-- inline templates, for small functionality that is not worth to put in
+             vue.js -->
+            <progress-view inline-template>
 
-            <!-- in this example we will slot content, but it will be
-             distributed in a desired way -->
+                <div>
+                    <h1>Your Progress to this course is {{completionRate}}%</h1>
 
-            <div slot="header">My title</div>
-            <!-- if you dont want any tag appearing on the html, use template-->
-            <!-- <template slot=header>My Title</template> -->
+                    <!-- v-on functionality works as expected -->
+                    <p><button @click="completionRate += 10">Update Completion Rate</button></p>
+                </div>
+            </progress-view>
 
-            <template slot="footer">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
-            </template>
         </modal>
     </div>
 </div>
