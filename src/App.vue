@@ -9,12 +9,8 @@
 
 <script>
 
-    // we are going to use Vue-resource to make http calls.
-    // for this exercise, we are consuming a service that
-    // generates random users:  https://randomuser.me/documentation
-
-    // VueResource is imported in main.js as a library we downloaded with
-    // npm install vue-resource
+    // vue-resource is no longer  "officially" supported by vue
+    // use axios and vue-axios instead.
 
     export default {
         name: 'app',
@@ -32,11 +28,12 @@
         methods: {
 
             cargarPersonas() {
-                this.$http.get('https://randomuser.me/api/?results=500')
+                this.axios.get('https://randomuser.me/api/?results=500')
                     .then( (respuesta) => {
-                        console.log(respuesta);
-                        this.personas = respuesta.body.results;
-                    })
+                        console.log('success');
+                        // use .data instead of .body
+                        this.personas = respuesta.data.results;
+                    });
             }
         }
     }
