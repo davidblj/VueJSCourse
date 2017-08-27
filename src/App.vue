@@ -1,32 +1,42 @@
 <template>
     <div id="app">
-        <message>Hello There</message>
-        <message>How is it going ?</message>
+        <img
+                v-for="persona in personas"
+        v-bind:src="persona.picture.thumbnail">
+        <p>{{ $data }}</p>
     </div>
 </template>
 
 <script>
 
-    // remember that we created this app with the command:
-    // vue init webpack-simple VueJS
+    // we are going to use Vue-resource to make http calls.
+    // for this exercise, we are consuming a service that
+    // generates random users:  https://randomuser.me/documentation
 
-    // execution is made through "npm run dev". --hot
-
-    // we need to compile everything in a file so that the web browser can understand
-    // and thats why we use webpack. Take a look at webpack.config.js
-
-    // Along the way, we are going to create a component named Message.vue in the
-    // folder src/components. for that, we need to define a components field in our main .vue file
-    import Message from './components/Message.vue'
+    // VueResource is imported in main.js as a library we downloaded with
+    // npm install vue-resource
 
     export default {
         name: 'app',
 
-        components: { Message },
+        mounted() {
+
+            console.log('mounted');
+            this.cargarPersonas();
+        },
 
         data() {
-            return {
-                msg: 'Welcome to Your Vue.js App'
+            return { personas: [] }
+        },
+
+        methods: {
+
+            cargarPersonas() {
+                this.$http.get('https://randomuser.me/api/?results=500')
+                    .then( (respuesta) => {
+                        console.log(respuesta);
+                        this.personas = respuesta.body.results;
+                    })
             }
         }
     }
