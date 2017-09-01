@@ -1,40 +1,29 @@
 <template>
     <div id="app">
-        <img
-                v-for="persona in personas"
-        v-bind:src="persona.picture.thumbnail">
-        <p>{{ $data }}</p>
+            <child :nombre="autor"></child>
+            <small>{{autor}}</small>
     </div>
 </template>
 
 <script>
 
-    // vue-resource is no longer  "officially" supported by vue
-    // use axios and vue-axios instead.
+    // we have seen how we can make child and siblings components react
+    // through method invocations
+
+    // we will see now how we can pass data between a parent and its child
+
+    import child  from './components/child.vue'
 
     export default {
         name: 'app',
 
-        mounted() {
-
-            console.log('mounted');
-            this.cargarPersonas();
-        },
+        components: { child },
 
         data() {
-            return { personas: [] }
+            return { autor: 'David jaramillo'}
         },
 
         methods: {
-
-            cargarPersonas() {
-                this.axios.get('https://randomuser.me/api/?results=500')
-                    .then( (respuesta) => {
-                        console.log('success');
-                        // use .data instead of .body
-                        this.personas = respuesta.data.results;
-                    });
-            }
         }
     }
 </script>
