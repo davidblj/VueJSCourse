@@ -1,31 +1,45 @@
 <template>
     <div id="app">
-            <child :nombre="autor"></child>
-            <small>{{autor}}</small>
+        <candidato v-for="candidato in candidatos"
+                   :nombre="candidato.name.first"
+                   :correoe="candidato.email"
+                   :imagen="candidato.picture.thumbnail"
+        >
+        </candidato>
     </div>
 </template>
 
 <script>
 
-    // we have seen how we can make child and siblings components react
-    // through method invocations
+    // we will see now how we can pass data between a parent and its child through props
 
-    // we will see now how we can pass data between a parent and its child
+    // todo: Fix axios request. In order for this to work, you need to make a change to reload our app.
 
-    import child  from './components/child.vue'
+    import candidato  from './components/candidato.vue'
 
     export default {
         name: 'app',
 
-        components: { child },
+        components: { candidato },
+
+        mounted() {
+            this.obtenerCandidatos();
+        },
 
         data() {
-            return { autor: 'David jaramillo'}
+            return { candidatos: []}
         },
 
         methods: {
+            obtenerCandidatos() {
+                axios.get('https://randomuser.me/api/?results=100')
+                    .then((respuesta) => {
+                        this.candidatos = respuesta.data.results;
+                    });
+            }
         }
-    }
+
+        }
 </script>
 
 <style lang="scss">
