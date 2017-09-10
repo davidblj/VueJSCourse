@@ -13,7 +13,16 @@
     export default {
 
         components: { tarea },
-        props: ['tareas']
+        data() {
+            return {
+                tareas: [
+                    'Finalizar sección Componentes',
+                    'Iniciar workflow con Vue CLI y Webpack',
+                    'Terminar de estudiar la documentación de Vuex',
+                    'Seguir jugando con Vue Router y grabar el primer vídeo',
+                ]
+            }
+        }
     }
 </script>
 

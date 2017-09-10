@@ -1,36 +1,37 @@
 <template>
     <div id="app">
-        <tareas :tareas="tareas">
-            Tareas que necesito finalizar ya!
-        </tareas>
-        <pre>{{ $data }}</pre>
+
+        <button @click="seleccionado = 'bio'">bio</button>
+        <button @click="seleccionado = 'contacto'">contacto</button>
+        <button @click="seleccionado = 'tareas'">tareas</button>
+
+        <components :is="seleccionado"></components>
     </div>
 </template>
 
 <script>
 
-    // we will dive deeper in to named slots and properties. Scoped slots gives a
-    // great advantage
-
     import tareas  from './components/tareas.vue'
+    import contacto from './components/contacto.vue'
+    import bio from './components/bio.vue'
 
     export default {
         name: 'app',
 
         components: {
             tareas,
+            contacto,
+            bio
         },
 
-       // in this example, a component is stored inside a component. All the data came from the
-        // parent component. This is done through the properties.
+        // We can define 3 components, and display them once at a time with the directive "v-if"
+        // but we would be still rendering all of them. With the directive "is", we can tell vue
+        // which component to show
 
         data() {
-            return { tareas: [
-                'Finalizar sección Componentes',
-                'Iniciar workflow con Vue CLI y Webpack',
-                'Terminar de estudiar la documentación de Vuex',
-                'Seguir jugando con Vue Router y grabar el primer vídeo',
-            ]}
+            return {
+                seleccionado: 'contacto'
+            }
         }
         }
 </script>
