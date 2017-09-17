@@ -1,36 +1,28 @@
 <template>
     <div id="app">
-
-        <button @click="seleccionado = 'bio'">bio</button>
-        <button @click="seleccionado = 'contacto'">contacto</button>
-        <button @click="seleccionado = 'tareas'">tareas</button>
-
-        <components :is="seleccionado"></components>
+        <password v-model="password"></password>
+        <p>{{data.password}}</p>
     </div>
 </template>
 
 <script>
 
-    import tareas  from './components/tareas.vue'
-    import contacto from './components/contacto.vue'
-    import bio from './components/bio.vue'
+    import password from './components/password.vue'
 
     export default {
         name: 'app',
 
         components: {
-            tareas,
-            contacto,
-            bio
+            password
         },
 
-        // We can define 3 components, and display them once at a time with the directive "v-if"
-        // but we would be still rendering all of them. With the directive "is", we can tell vue
-        // which component to show
+        // we will mutate "password" in our parent component. Its child will process the logic
+        // and then he will emit an input event every time an invalid password has been typed.
+        // v-
 
         data() {
             return {
-                seleccionado: 'contacto'
+                password: 'es3Es653!*&__',
             }
         }
         }
