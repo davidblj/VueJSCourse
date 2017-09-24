@@ -1,28 +1,26 @@
 <template>
     <div id="app">
-        <persona></persona>
+        <elemento tipo="header">Hello header</elemento>
+        <elemento tipo="nav">Hello nav</elemento>
+        <elemento tipo="footer">Hello footer</elemento>
     </div>
 </template>
 
 <script>
 
-    import persona from './components/persona.vue'
+    import elemento from './components/elemento.vue'
 
     export default {
         name: 'app',
 
         components: {
-            persona
+            elemento
         },
 
-        // this is just a simple configuration for axios and how it
-        // was imported. Also, take a look at the computed properties
-
-        data() {
-            return {
-                password: 'es3Es653!*&__',
-            }
-        }
+        // say that a component is in charge of displaying different components based
+        // on what the parent requests.  We can display them by the directive v-if. But
+        // that is quite ineffective. Instead we use the render function.  Go to element.vue
+        // file
         }
 </script>
 
