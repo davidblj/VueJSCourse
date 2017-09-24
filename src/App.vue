@@ -1,24 +1,22 @@
 <template>
     <div id="app">
-        <password v-model="password"></password>
-        <p>{{data.password}}</p>
+        <persona></persona>
     </div>
 </template>
 
 <script>
 
-    import password from './components/password.vue'
+    import persona from './components/persona.vue'
 
     export default {
         name: 'app',
 
         components: {
-            password
+            persona
         },
 
-        // we will mutate "password" in our parent component. Its child will process the logic
-        // and then he will emit an input event every time an invalid password has been typed.
-        // v-
+        // this is just a simple configuration for axios and how it
+        // was imported. Also, take a look at the computed properties
 
         data() {
             return {
