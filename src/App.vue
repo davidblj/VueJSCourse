@@ -1,8 +1,9 @@
 <template>
     <div id="app">
-        <elemento tipo="header">Hello header</elemento>
-        <elemento tipo="nav">Hello nav</elemento>
-        <elemento tipo="footer">Hello footer</elemento>
+        <elemento></elemento>
+        <ul>
+            <li>Outer list item</li>
+        </ul>
     </div>
 </template>
 
@@ -17,10 +18,9 @@
             elemento
         },
 
-        // say that a component is in charge of displaying different components based
-        // on what the parent requests.  We can display them by the directive v-if. But
-        // that is quite ineffective. Instead we use the render function.  Go to element.vue
-        // file
+        // we can define global style rules inside components that only affects the DOM
+        // inside him. For that, we add the "scoped" keyword next to the <style> tag declaration
+
         }
 </script>
 
