@@ -1,29 +1,32 @@
 <template>
     <div id="app">
-        <elemento></elemento>
-        <ul>
-            <li>Outer list item</li>
-        </ul>
+       <h1 :class="[$style.rojo]">Hello world</h1>
+        <h1 :class="{[$style.subrayado]: subrayado}">Hello world</h1>
     </div>
 </template>
 
 <script>
-
-    import elemento from './components/elemento.vue'
-
     export default {
         name: 'app',
+        data() {
+            return {
+                subrayado: true     // you can down the road, change the value of this variable
+                                    // for dynamic style rules
+            }
+        }
 
-        components: {
-            elemento
-        },
-
-        // we can define global style rules inside components that only affects the DOM
-        // inside him. For that, we add the "scoped" keyword next to the <style> tag declaration
+        // like scoped variables, we can define local rules. These rules are unique within
+        // the component because webpack assign them a coded name. You can inspect the generated HTML.
 
         }
 </script>
 
-<style lang="scss">
+<style module lang="scss">
 
+    .subrayado {
+        text-decoration: underline;
+    }
+    .rojo {
+        color: red
+    }
 </style>
