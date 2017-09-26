@@ -1,32 +1,21 @@
 <template>
     <div id="app">
-        <tareas-restantes></tareas-restantes>
-        <ul>
-            <li v-for="tarea in tareas">{{tarea.nombre}}</li>
-        </ul>
+        <contador></contador>
     </div>
 </template>
 <script>
-    import tareasRestantes from './components/tareasRestantes.vue'
+    import contador from './components/contador.vue'
     import {mapState} from 'vuex'
 
     // getters and setters in vuex
-    // wen can make calculations in a separate file (tareasRestantes.vue). But we can
-    // skip this step and make a getter in store.js
+    // we can modify values directly from this file. But it will turn out to be something
+    // cumbersome. We define setters or mutations. Take a look at contador.vue file
+
 
     export default {
 
         name: 'app',
-        components: { tareasRestantes },
-        /*
-        // alternative way to access to store
-        computed: {
-            tareas() {
-                return this.$store.state.tareas;
-            }
-        }
-        */
-
+        components: { contador },
         computed: mapState(['tareas'])
     }
 
