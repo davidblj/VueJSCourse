@@ -1,30 +1,33 @@
 <template>
     <div id="app">
-        La cantidad es {{cantidad}}, y me dedicacion es {{dedicacion}}, pero mi habilidad
-        es {{ habilidad }}
+        <tareas-restantes></tareas-restantes>
+        <ul>
+            <li v-for="tarea in tareas">{{tarea.nombre}}</li>
+        </ul>
     </div>
 </template>
 <script>
-    import contador from './components/contador.vue'
+    import tareasRestantes from './components/tareasRestantes.vue'
     import {mapState} from 'vuex'
 
-    // we can use states in vuex in a simple manner with MapState.
-    // Invoking mapstate in our computed properties let us access the
-    // state object. We do so with an arrow function or with an array
-    // containing the string variables.
+    // getters and setters in vuex
+    // wen can make calculations in a separate file (tareasRestantes.vue). But we can
+    // skip this step and make a getter in store.js
 
     export default {
 
         name: 'app',
-        components: { contador },
+        components: { tareasRestantes },
         /*
-        computed: mapState({
-            // inside our mapstate object, we have got access to "state"
-            cantidad: (state) => state.cantidad,
-            dedicacion: (state) => state.dedicacion
-        })
+        // alternative way to access to store
+        computed: {
+            tareas() {
+                return this.$store.state.tareas;
+            }
+        }
         */
-        computed: mapState(['cantidad', 'dedicacion', 'habilidad'])
+
+        computed: mapState(['tareas'])
     }
 
 </script>
