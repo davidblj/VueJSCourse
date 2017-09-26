@@ -6,5 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         cantidad: 0,
+        dedicacion: 'mucha',
+        habilidad: 'media'
     }
 });

@@ -1,30 +1,30 @@
 <template>
     <div id="app">
-        <!--
-        <contador :cantidad="cantidad"
-        @aumentar="cantidad++"
-        @reducir="cantidad--"></contador> -->
-    <contador></contador>
+        La cantidad es {{cantidad}}, y me dedicacion es {{dedicacion}}, pero mi habilidad
+        es {{ habilidad }}
     </div>
 </template>
 <script>
     import contador from './components/contador.vue'
+    import {mapState} from 'vuex'
 
-    // In the last example, we saw how we can share an state. For more
-    // complex escenarios, we can use vuex. Vuex will hold the state of
-    // the variable 'cantidad'.
-
-    // we define a store.js file. And we import vuex in main.js.
+    // we can use states in vuex in a simple manner with MapState.
+    // Invoking mapstate in our computed properties let us access the
+    // state object. We do so with an arrow function or with an array
+    // containing the string variables.
 
     export default {
 
         name: 'app',
         components: { contador },
         /*
-        data() {
-            return { cantidad: 0}
-        }
+        computed: mapState({
+            // inside our mapstate object, we have got access to "state"
+            cantidad: (state) => state.cantidad,
+            dedicacion: (state) => state.dedicacion
+        })
         */
+        computed: mapState(['cantidad', 'dedicacion', 'habilidad'])
     }
 
 </script>
