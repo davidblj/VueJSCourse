@@ -9,7 +9,18 @@ export const store = new Vuex.Store({
     },
     // setter or mutation
     mutations: {
-        aumentar: (state) => state.cantidad++,
-        reducir: (state) => state.cantidad--
+        aumentar: (state, cantidad) => state.cantidad += cantidad,
+        reducir: (state, cantidad) => state.cantidad -= cantidad
+    },
+    // actions is an object that can access the state and mutations.
+    // We are going to simulate a change that is made asynchronously
+    actions: {
+        aumentarAsync: (context, objeto) => {
+            setTimeout( () => context.commit('aumentar', objeto.cantidad), 2000)
+        },
+        // ES6 object destructuring
+        reducirAsync: ({commit}, {cantidad}) => {
+            setTimeout(() => commit('reducir', cantidad), 2000)
+        }
     }
 });

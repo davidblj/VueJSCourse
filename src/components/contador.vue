@@ -1,35 +1,32 @@
 <template>
     <div>
         <h1>Contador: {{cantidad}}</h1>
-        <button @click="aumentar">Sumar</button>
-        <button @click="reducir">Restar</button>
+        <!-- note that we are now using an additional parameter value; an object containing
+         the quantity to be added or substract -->
+        <button @click="aumentarAsync({cantidad: 2})">Sumar</button>
+        <button @click="reducirAsync({cantidad: 3})">Restar</button>
     </div>
 </template>
 <script>
-    import {mapState, mapMutations} from 'vuex'
+    import {mapState, mapActions} from 'vuex'
 
     export default {
 
         computed: mapState(['cantidad']),
 
-        // there are two ways to access our mutations
-        // through this.$store
         /*
+        // the hard way
         methods: {
             aumentar() {
-                this.$store.commit('aumentar');
+                this.$store.dispatch('aumentarAsync');
             },
             reducir() {
-                this.$store.commit('reducir')
+                this.$store.dispatch('reducirAsync')
             }
         },
         */
 
-        // or through mapMutations
-        // mutations must be synchronous. Now, keep in mind that i can also pass
-        // values and objects as a second parameter
-
-        methods: mapMutations(['aumentar', 'reducir'])
+        methods: mapActions(['aumentarAsync', 'reducirAsync'])
     }
 </script>
 <style>

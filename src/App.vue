@@ -5,18 +5,15 @@
 </template>
 <script>
     import contador from './components/contador.vue'
-    import {mapState} from 'vuex'
 
     // getters and setters in vuex
-    // we can modify values directly from this file. But it will turn out to be something
-    // cumbersome. We define setters or mutations. Take a look at contador.vue file
-
+    // if we need to change an state, and the way it is done is in an asynchronous manner
+    // we need Actions. Take a look at store.js and contador.vue files
 
     export default {
 
         name: 'app',
         components: { contador },
-        computed: mapState(['tareas'])
     }
 
 </script>
