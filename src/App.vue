@@ -1,21 +1,15 @@
 <template>
-    <div id="app">
-        <contador></contador>
-    </div>
+    <section>
+        <productos></productos>
+        <carro></carro>
+    </section>
 </template>
 <script>
-    import contador from './components/contador.vue'
-
-    // getters and setters in vuex
-    // if we need to change an state, and the way it is done is in an asynchronous manner
-    // we need Actions. Take a look at store.js and contador.vue files
-
+    import Productos from './components/Productos.vue';
+    import Carro from './components/Carro.vue';
     export default {
-
-        name: 'app',
-        components: { contador },
+        components: {Productos, Carro}
     }
-
 </script>
 <style lang="scss">
 

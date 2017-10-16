@@ -1,26 +1,26 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
+import productos from './modules/productos';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        cantidad: 0,
+        /*productos: [
+            {nombre: 'Steam Link', precio: 50},
+            {nombre: 'Steam Controller', precio: 59},
+            {nombre: 'Axiom Verge', precio: 17},
+        ],*/
+        carro: [],
     },
-    // setter or mutation
+    getters: {
+        totalCompra: (state) => state.carro.reduce((total, producto) => total + producto.precio, 0),
+    },
     mutations: {
-        aumentar: (state, cantidad) => state.cantidad += cantidad,
-        reducir: (state, cantidad) => state.cantidad -= cantidad
+        /*anadirProducto: (state, producto) => state.productos.unshift(producto),*/
+        comprarProducto: (state, indice) => state.carro.unshift(state.productos[indice]),
+        eliminarProducto: (state, indice) => state.carro.splice(indice, 1),
     },
-    // actions is an object that can access the state and mutations.
-    // We are going to simulate a change that is made asynchronously
-    actions: {
-        aumentarAsync: (context, objeto) => {
-            setTimeout( () => context.commit('aumentar', objeto.cantidad), 2000)
-        },
-        // ES6 object destructuring
-        reducirAsync: ({commit}, {cantidad}) => {
-            setTimeout(() => commit('reducir', cantidad), 2000)
-        }
+    modules: {
+        productos: productos
     }
 });
