@@ -1,24 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en"
+        xmlns:v-on="http://www.w3.org/1999/xhtml"
+        xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8">
-    <title>my-app</title>
+      <meta charset="UTF-8">
+      <title>Title</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
   </head>
   <body>
 
-    <main>
-      <h1>Aprendiendo Vue-Router</h1>
-      <router-link to="/">Portada</router-link>
-      <router-link to="/contacto">Contacto</router-link>
-      <hr>
-      <router-view></router-view>
+  <div class="container">
+      <div id="root">
 
-    </main>
-    <!-- use a cdn to use the vue router library -->
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <script src="src/main.js"></script>
-    <script src="/dist/build.js"></script>
+        <div class="tabs">
+          <ul>
+            <tab name="About us" description="david">
+            </tab>
+
+            <tab name="About Our Culture" description="maria">
+            </tab>
+
+            <tab name="About Our Vision" description="juan">
+            </tab>
+          </ul>
+        </div>
+
+        <h1>{{description}}</h1>
+
+        <!--- todo: mostrar el texto -->
+        <!-- and add them as much as you like, a new entry will spawn a new tab
+         in the tabs header -->
+
+      </div>
+  </div>
+
+
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <script src="vue.js"></script>
 
   </body>
-</html>
+  </html>
