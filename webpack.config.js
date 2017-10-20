@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: './src/main.js',
-  output: {     // compiled files destination
+  output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'build.js'
@@ -11,7 +11,6 @@ module.exports = {
   module: {
     rules: [
       {
-        // loaders to preprocess files (.vue, .js, .scss, ...)
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -41,13 +40,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-        // "require" shortcut for  vue.esm.js
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    overlay: true
   },
   performance: {
     hints: false
@@ -55,7 +54,6 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
-//  Production ? do some minification, etc  ...
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html

@@ -1,4 +1,4 @@
-# my-app
+# routes
 
 > A Vue.js project
 
